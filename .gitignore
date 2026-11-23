@@ -1,0 +1,14 @@
+# Ce que Git ne doit jamais envoyer sur GitHub.
+
+# les environnements Python : plusieurs gigaoctets, propres a cette machine,
+# et recreables a partir des fichiers requirements.txt
+.venv/
+.venv_casse/
+
+# les poids et historiques d'entrainement : plus de 500 Mo, regenerables par
+# le notebook. Seul le modele exporte pour l'API est versionne.
+sorties/
+
+# fichiers temporaires de Python
+__pycache__/
+*.pyc

@@ -1,0 +1,13 @@
+# Dependances de l'API de segmentation.
+#
+# Ni Keras ni PyTorch ici : le modele a ete exporte au format ONNX a la fin du
+# notebook, et ONNX Runtime suffit pour predire. C'est ce qui permet a l'API de
+# tenir dans la memoire d'un hebergement gratuit.
+
+fastapi==0.146.0
+uvicorn[standard]==0.54.0
+python-multipart==0.0.32           # necessaire pour recevoir des fichiers en POST
+
+onnxruntime==1.32.0
+numpy==2.4.6
+opencv-python-headless==5.0.0.93   # version sans interface graphique, plus legere

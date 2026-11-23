@@ -1,0 +1,21 @@
+{
+  "architecture": "mobilenetv2",
+  "modele": "modele_entraine/segmentation.onnx",
+  "modele_source": "3b_mobilenet_affine",
+  "parametres": 3613832,
+  "miou_test": 0.7599,
+  "miou_test_intervalle_95": [
+    0.752,
+    0.7677
+  ],
+  "iou_par_categorie": {
+    "void": 0.6698,
+    "flat": 0.9265,
+    "construction": 0.8214,
+    "object": 0.4279,
+    "nature": 0.87,
+    "sky": 0.9024,
+    "human": 0.6187,
+    "vehicle": 0.8425
+  }
+}

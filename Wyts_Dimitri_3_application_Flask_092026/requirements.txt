@@ -1,0 +1,9 @@
+# Dependances de l'application web de demonstration.
+#
+# Volontairement minimales : l'application ne fait aucun calcul, elle interroge
+# l'API par le reseau. Ni Keras ni PyTorch ici, ce qui la rend tres legere a
+# deployer.
+
+flask==3.1.3
+requests==2.34.2
+gunicorn==26.2.0      # serveur de production ; celui integre a Flask n'est pas prevu pour ca

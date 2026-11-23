@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Segmentation d'images embarquees</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+  <h1>Segmentation d'images pour vehicule autonome</h1>
+  <p class="sous-titre">
+    Future Vision Transport, demonstration du modele de segmentation.
+    Les images proviennent du jeu de test : le modele ne les a jamais vues pendant son entrainement.
+  </p>
+</header>
+
+{% if erreur %}
+<div class="alerte">
+  <strong>L'API ne repond pas.</strong>
+  <p>Adresse interrogee : <code>{{ url_api }}</code></p>
+  <p>{{ erreur }}</p>
+</div>
+{% else %}
+
+<section class="panneau">
+  <form method="get" action="/">
+    <label for="id">Image a segmenter</label>
+    <select name="id" id="id" onchange="this.form.submit()">
+      {% for identifiant in identifiants %}
+        <option value="{{ identifiant }}" {% if identifiant == choisi %}selected{% endif %}>
+          {{ identifiant }}
+        </option>
+      {% endfor %}
+    </select>
+    <noscript><button type="submit">Afficher</button></noscript>
+  </form>
+
+  {% if info %}
+  <dl class="infos">
+    <div><dt>Modele</dt><dd>{{ info.architecture }}</dd></div>
+    <div><dt>Parametres</dt><dd>{{ "{:,}".format(info.parametres).replace(",", " ") }}</dd></div>
+    {% if info.miou_test %}
+    <div><dt>mIoU sur le jeu de test</dt><dd>{{ "%.4f"|format(info.miou_test) }}</dd></div>
+    {% endif %}
+    <div><dt>Traitement</dt><dd>{{ info.taille_traitee.largeur }} x {{ info.taille_traitee.hauteur }}</dd></div>
+  </dl>
+  {% endif %}
+</section>
+
+{% if choisi %}
+<section class="vues">
+  <figure>
+    <figcaption>Image d'origine</figcaption>
+    <img src="/vue/image/{{ choisi }}" alt="image d'origine">
+  </figure>
+
+  <figure>
+    <figcaption>Masque reel, annote a la main</figcaption>
+    <img src="/vue/masque/{{ choisi }}" alt="masque reel">
+  </figure>
+
+  <figure>
+    <figcaption>Masque predit par le modele</figcaption>
+    <img src="/vue/prediction/{{ choisi }}" alt="masque predit">
+  </figure>
+</section>
+
+<section class="legende">
+  <h2>Les 8 categories</h2>
+  <ul>
+    {% for nom, couleur, detail in categories %}
+    <li>
+      <span class="pastille" style="background: {{ couleur }}"></span>
+      <strong>{{ nom }}</strong>
+      <span class="detail">{{ detail }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% endif %}
+
+<footer>
+  <p>Projet 8, parcours AI Engineer, OpenClassrooms. Dimitri Wyts.</p>
+</footer>
+
+</body>
+</html>

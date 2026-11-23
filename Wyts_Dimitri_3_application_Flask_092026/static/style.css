@@ -1,0 +1,186 @@
+/* Feuille de style de l'application de demonstration.
+   Volontairement sobre : l'interet est de voir les masques, pas la decoration. */
+
+:root {
+  --fond: #14161a;
+  --carte: #1d2026;
+  --bord: #2c313a;
+  --texte: #e6e8ec;
+  --attenue: #98a0ae;
+  --accent: #6ea8fe;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 2rem 1.5rem 3rem;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.55;
+}
+
+header, .panneau, .vues, .legende, footer, .alerte {
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+h1 {
+  margin: 0 0 .3rem;
+  font-size: 1.6rem;
+  font-weight: 650;
+}
+
+.sous-titre {
+  margin: 0 0 2rem;
+  color: var(--attenue);
+  max-width: 70ch;
+}
+
+/* ------------------------------------------------------------- le panneau */
+.panneau {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--attenue);
+  margin-bottom: .4rem;
+}
+
+select {
+  background: var(--fond);
+  color: var(--texte);
+  border: 1px solid var(--bord);
+  border-radius: 6px;
+  padding: .55rem .8rem;
+  font-size: .95rem;
+  min-width: 20rem;
+}
+
+select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.infos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  margin: 0;
+}
+
+.infos dt {
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--attenue);
+}
+
+.infos dd {
+  margin: .15rem 0 0;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.05rem;
+}
+
+/* --------------------------------------------------------------- les vues */
+.vues {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+figure {
+  margin: 0;
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+figcaption {
+  padding: .7rem 1rem;
+  font-size: .85rem;
+  color: var(--attenue);
+  border-bottom: 1px solid var(--bord);
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ------------------------------------------------------------- la legende */
+.legende h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 .8rem;
+}
+
+.legende ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: .5rem 1.5rem;
+}
+
+.legende li {
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
+  font-size: .9rem;
+}
+
+.pastille {
+  width: .95rem;
+  height: .95rem;
+  border-radius: 3px;
+  border: 1px solid var(--bord);
+  flex: none;
+  transform: translateY(2px);
+}
+
+.detail { color: var(--attenue); }
+
+/* --------------------------------------------------------------- erreurs */
+.alerte {
+  background: #3a1d21;
+  border: 1px solid #7a2f38;
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 2rem;
+}
+
+.alerte p { margin: .4rem 0 0; }
+
+code {
+  background: rgba(255, 255, 255, .07);
+  padding: .1rem .4rem;
+  border-radius: 4px;
+  font-size: .9em;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--bord);
+  color: var(--attenue);
+  font-size: .85rem;
+}
