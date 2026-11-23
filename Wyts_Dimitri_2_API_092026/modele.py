@@ -45,8 +45,9 @@ def charger(chemin_onnx):
     options.inter_op_num_threads = 1
 
     # ONNX Runtime garde par defaut une reserve de memoire pour aller plus vite.
-    # La desactiver economise de la memoire sans ralentir la prediction (mesure
-    # dans le notebook), ce qui compte sur un hebergement gratuit.
+    # La desactiver divise encore la memoire occupee, pour un ralentissement tres
+    # leger (mesures dans la section 13 du notebook) : sur un hebergement limite
+    # a 512 Mo, c'est le bon compromis.
     options.enable_cpu_mem_arena = False
 
     return ort.InferenceSession(str(chemin_onnx), options, providers=["CPUExecutionProvider"])
